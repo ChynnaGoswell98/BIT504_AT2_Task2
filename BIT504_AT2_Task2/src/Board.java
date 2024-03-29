@@ -1,27 +1,27 @@
 import java.awt.*;
 
 public class Board {
-	// grid line width
-	public static final int GRID_WIDTH = 8;
-	// grid line half width
-	public static final int GRID_WIDHT_HALF = GRID_WIDTH / 2;
-	
-	//2D array of ROWS-by-COLS Cell instances
-	Cell [][] cells;
-	
-	/** Constructor to create the game board */
-	public Board() {
-		
-		// Initialise the cells array using ROWS and COLS constants 
-	    cells = new Cell[GameMain.ROWS][GameMain.COLS];
-		
-		for (int row = 0; row < GameMain.ROWS; ++row) {
-			for (int col = 0; col < GameMain.COLS; ++col) {
-				cells[row][col] = new Cell(col, col);
-			}
-		}
-	}
-	
+	// Grid line width
+    public static final int GRID_WIDTH = 8;
+    // Grid line half width
+    public static final int GRID_WIDTH_HALF = GRID_WIDTH / 2;
+    
+    // 2D array of ROWS-by-COLS Cell instances
+    Cell [][] cells;
+    
+    // Constructor to create the game board
+    public Board() {
+        
+        // Initialize the cells array using ROWS and COLS constants 
+        cells = new Cell[GameMain.ROWS][GameMain.COLS];
+        
+        for (int row = 0; row < GameMain.ROWS; ++row) {
+            for (int col = 0; col < GameMain.COLS; ++col) {
+                // Corrected the row and col indices here
+                cells[row][col] = new Cell(row, col);
+            }
+        }
+    }
 
 	//Checking if the game is a draw
 	public boolean isDraw() {
@@ -80,12 +80,12 @@ public class Board {
 		//draw the grid
 		g.setColor(Color.gray);
 		for (int row = 1; row < GameMain.ROWS; ++row) {          
-			g.fillRoundRect(0, GameMain.CELL_SIZE * row - GRID_WIDHT_HALF,                
+			g.fillRoundRect(0, GameMain.CELL_SIZE * row - GRID_WIDTH_HALF,                
 					GameMain.CANVAS_WIDTH - 1, GRID_WIDTH,                
 					GRID_WIDTH, GRID_WIDTH);       
 			}
 		for (int col = 1; col < GameMain.COLS; ++col) {          
-			g.fillRoundRect(GameMain.CELL_SIZE * col - GRID_WIDHT_HALF, 0,                
+			g.fillRoundRect(GameMain.CELL_SIZE * col - GRID_WIDTH_HALF, 0,                
 					GRID_WIDTH, GameMain.CANVAS_HEIGHT - 1,                
 					GRID_WIDTH, GRID_WIDTH);
 		}

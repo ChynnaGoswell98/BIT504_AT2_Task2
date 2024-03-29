@@ -153,34 +153,31 @@ public class GameMain extends JPanel implements MouseListener{
 			
 	//Checks where the mouse clicked, if the cell is available, updates the UI with the new "move" from player
 	public void mouseClicked(MouseEvent e) {  
-	    // get the coordinates of where the click event happened            
+		// get the coordinates of where the click event happened            
 		int mouseX = e.getX();             
-		int mouseY = e.getY();             
-		// Get the row and column clicked             
-		int rowSelected = mouseY / CELL_SIZE;             
-		int colSelected = mouseX / CELL_SIZE;               			
-		if (currentState == GameState.Playing) {                
-			if (rowSelected >= 0 && rowSelected < ROWS && colSelected >= 0 && colSelected < COLS && board.cells[rowSelected][colSelected].content == Player.Empty) {
-				// move  
-				board.cells[rowSelected][colSelected].content = currentPlayer; 
-				// update currentState                  
-				updateGame(currentPlayer, rowSelected, colSelected); 
-				// Switch player
-				if (currentPlayer == Player.Cross) {
-					currentPlayer =  Player.Nought;
-				}
-				else {
-					currentPlayer = Player.Cross;
-				}
-			}             
-		} else {        
-			// game over and restart              
-			initGame();            
-		}   
-		
-		// Redraw the graphics on the UI
-	    repaint();
-           
+	    int mouseY = e.getY();             
+	    int rowSelected = mouseY / CELL_SIZE;             
+	    int colSelected = mouseX / CELL_SIZE; 
+
+	    if (currentState == GameState.Playing) {                
+	        if (rowSelected >= 0 && rowSelected < ROWS && colSelected >= 0 && colSelected < COLS) {
+	            if (board.cells[rowSelected][colSelected].content == Player.Empty) {
+	                // Move  
+	                board.cells[rowSelected][colSelected].content = currentPlayer; 
+	                updateGame(currentPlayer, rowSelected, colSelected); 
+	                if (currentPlayer == Player.Cross) {
+	                    currentPlayer =  Player.Nought;
+	                } else {
+	                    currentPlayer = Player.Cross;
+	                }
+	            } 
+	        }             
+	    } else {        
+	        // Game over and restart              
+	        initGame();            
+	    }   
+
+	    repaint();           
 	}
 		
 	
@@ -201,7 +198,7 @@ public class GameMain extends JPanel implements MouseListener{
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// Auto-generated, event not usedPle
+		// Auto-generated, event not used
 		
 	}
 }
