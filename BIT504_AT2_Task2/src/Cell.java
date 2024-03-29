@@ -4,24 +4,22 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Cell {
-    //content of this cell (empty, cross, nought)
+	//content of this cell (empty, cross, nought)
 	Player content;
 	//row and column of this cell
 	int row, col;
 	
-	/** Constructor to initialise this cell with the specified row and col */
+	//Constructor to initialise this cell with the specified row and col
 	public Cell(int row, int col) {
-		
-		// TODO: Initialise the variables row, col 
-
-		
-		
-		//TODO: call the method that sets the cell content to EMPTY
-		 
+		// Initialise the row and col variables
+		this.row = row;
+		this.col = col;
+    
+		// Call the method that sets the cell content to EMPTY
+		clear();
 	}
-	
 
-	/** Paint itself on the graphics canvas, given the Graphics context g */ 
+	//Paint itself on the graphics canvas, given the Graphics context g
 	public void paint(Graphics g) {
 		//Graphics2D allows setting of pen's stroke size
 		Graphics2D graphic2D = (Graphics2D) g;
@@ -30,6 +28,7 @@ public class Cell {
 		//draw the symbol in the position
 		int x1 = col * GameMain.CELL_SIZE + GameMain.CELL_PADDING;
 		int y1 = row * GameMain.CELL_SIZE + GameMain.CELL_PADDING;
+		
 		if (content == Player.Cross) {
 			graphic2D.setColor(Color.RED);
 			int x2 = (col + 1) * GameMain.CELL_SIZE - GameMain.CELL_PADDING;
@@ -42,12 +41,10 @@ public class Cell {
 		}
 	}
 	
-	/** Set this cell's content to EMPTY */
+	//Set this cell's content to EMPTY
 	public void clear() {
-		
-		// TODO: Set the value of content to Empty (Remember this is an enum)
-
-		
+		// Set the value of content to Empty
+	    content = Player.Empty;
 	}
-		
-}
+}	
+
